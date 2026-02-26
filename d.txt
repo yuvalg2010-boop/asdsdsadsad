@@ -442,5 +442,20 @@ namespace ConsoleApp10
             Console.WriteLine("the min orders is" + food[minInd]);
 
         }
+        static void CountStringsOfLength()
+        {
+            string[] arr = { "saffas", "asff", "gsd", "fsdfsdf", "dsfasa", "regeg" };
+            int num = 5;
+            int counter = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].Length == num)
+                {
+                    counter++;
+                }
+            }
+            Console.WriteLine(counter);
+
+        }
     }
 }
