@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Services;
 using System.Text;
@@ -13,7 +14,7 @@ namespace ConsoleApp10
     {
         static void Main(string[] args)
         {
-            TaskFromTest();
+            RunRestaurantOrders();
         }
         private static object rnd;
 
@@ -53,7 +54,7 @@ namespace ConsoleApp10
 
             return reversArr;
         }
-        static int[] MoveArr(int[] arr1)
+        static int[] GetMaxIndex(int[] arr1)
         {
 
             int temp = arr1[0];
@@ -83,7 +84,7 @@ namespace ConsoleApp10
 
 
         }
-        static void SumArr(int[] arr1)
+        static void PrintSum(int[] arr1)
         {
             int sum = 0;
             int avg = 0;
@@ -103,7 +104,7 @@ namespace ConsoleApp10
 
 
 
-        static void isOppsite(int[] arr1)
+        static void IsPalindrome(int[] arr1)
         {
             bool palindrom = true;
             int a = 0;
@@ -120,7 +121,7 @@ namespace ConsoleApp10
             Console.WriteLine(palindrom);
         }
 
-        static void Counter()
+        static void SimulateDiceRolls()
         {
             int[] dice = new int[6];
             Random rnd = new Random();
@@ -144,7 +145,7 @@ namespace ConsoleApp10
             }
             Console.WriteLine("most repeared nm is at :" + (max + 1));
         }
-        static void AbcTask()
+        static void CountLetters()
         {
             int[] arr = new int[26];
             char[] chars = { 'g', 's', 'a', 'f', 'b', 'x', 'c' };
@@ -159,7 +160,7 @@ namespace ConsoleApp10
                 Console.WriteLine(" ");
             }
         }
-        static void Task3()
+        static void RemoveDuplicatesKeepFirst()
         {
             int[] arr = new int[30];
             Random rnd = new Random();
@@ -178,7 +179,7 @@ namespace ConsoleApp10
             }
             PrintArr(arr);
         }
-        static void TaskMAx()
+        static void StopWhenSameNumberTwice()
         {
             bool falg = true;
             int prevnum = 1;
@@ -191,13 +192,15 @@ namespace ConsoleApp10
                 prevnum = num;
             }
         }
-        static void Task5()
+        static void FindMostFrequentNumber()
         {
             int[] arr = new int[100];
             Random rnd = new Random();
-            int[] counter = new int[71];
+            int[] counter = new int[7];
             int max = 0;
+            int max2 = 0;
             int index = 0;
+            int index2 = 0;
             for (int i = 0; i < 100; i++)
             {
                 arr[i] = rnd.Next(25, 96);
@@ -207,13 +210,20 @@ namespace ConsoleApp10
             {
                 if (counter[i] > max)
                 {
+                    max2 = max;
                     max = counter[i];
                     index = i;
                 }
+                if (counter[i] > max2 )
+                {
+                    max2 = counter[i];
+                    index2 = i;
+                }
             }
             Console.WriteLine("the number" + (index + 25) + "    " + "max" + max);
+            Console.WriteLine("the number" + (index2 + 25) + "    " + "max2" + max2);
         }
-        static void Task6()
+        static void RunVotingSystem()
         {
             int[] arr = new int[10];
             int counter = 0;
@@ -246,21 +256,21 @@ namespace ConsoleApp10
             Console.WriteLine(" ");
             Console.WriteLine("with" + a + "voices");
         }
-        static void ahh()
+        static void CountConsecutiveChars()
         {
             int cp = 0;
             char[] arr = new char[10];
 
             for (int i = 0; i < arr.Length - 1; i++)
             {
-                if ((arr[i | +1] - arr[i]) == 1)
+                if ((arr[i+1] - arr[i]) == 1)
                 {
                     cp++;
                 }
             }
             Console.WriteLine(cp);
         }
-        static void TaskFromTheTest()
+        static void Move1ToTheEnd()
         {
             int cp = 0;
             int[] arr = { 1, 2, 1, 3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1 };
@@ -284,21 +294,153 @@ namespace ConsoleApp10
                 Console.Write(",");
             }
         }
-        static void TaskFromTest()
+        static void AreAllNumbersUnique()
         {
             int[] arr = { 5, 3, 2, 1 };
-            int[] counter = new int[4];
             bool flag = true;
+
             for (int i = 0; i < arr.Length; i++)
             {
-                counter[arr[i] - 1]++;
-            }
-            for (int i = 0; i < counter.Length; i++)
-            {
-                if (counter[i] > 1)
+                for (int j = i + 1; j < arr.Length; j++)
                 {
+                    if (arr[i] == arr[j])
+                    {
+                        flag = false;
+                    }
+                }
+            }
+
+            Console.WriteLine(flag);
+        }
+
+
+
+        static void CountUserInputs()
+        {
+            int[] arr = new int[15];
+
+            while (true)
+            {
+                Console.WriteLine("Enter a number: ");
+                int num = int.Parse(Console.ReadLine());
+
+                if (num == 0)
+                    break;
+
+                arr[num -1]++;
+
+                
+            }
+            for (int i =0; i < arr.Length; i++)
+            {
+                Console.WriteLine(i+1 + ": " + arr[i]);
+                
+            }
+        }
+
+        static bool IsStepTwoSequence(int[] arr)
+        {   
+            bool flag = true;
+
+            for (int i = 0; i < arr.Length -1 && flag; i++)
+            {
+                if (arr[i+1] - arr[i] != 2) 
+                { 
                     flag = false;
                 }
             }
-            Console.WriteLine(flag);
+            return flag;
+            
+
         }
+        static void AnalyzeGrades()
+        {
+            int[] arr = new int[8];
+            double avg = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine("Enter a grade: ");
+                arr[i] = int.Parse(Console.ReadLine());
+                avg += arr[i];
+            }
+            avg = avg / arr.Length;
+            Console.WriteLine(avg);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] > avg)
+                {
+                    Console.WriteLine("Grade " + (i + 1) + " is above average: " + arr[i]);
+                }
+                 else if (arr[i] <= 60)
+                {
+                    Console.WriteLine(arr[i]);
+                }
+            }
+            if (avg > 90)
+            {
+                Console.WriteLine(" avg Grade is excellent: ");
+            }
+        }
+        static void RunRestaurantOrders()
+        {
+            int[] arr = new int[3];
+            string[] food = { "pizza", "salad", "pasta" };
+            int sum = 0;
+            int max = 0;
+            int maxInd = 0;
+            int min = 0;
+            int minInd = 0;
+            while (true){
+                Console.WriteLine("for pizza enter 1");
+                Console.WriteLine("for salad enter 2");
+                Console.WriteLine("for pasta enter 3");
+                Console.WriteLine("for exit enter 0");
+                int num = int.Parse(Console.ReadLine());
+                if (num == 1) {
+                    Console.WriteLine("how many");
+                    int num1 = int.Parse(Console.ReadLine());
+                    arr[0] += num1;
+                    sum += num1 ;
+                }
+                else if (num == 2)
+                {
+                    Console.WriteLine("how many");
+                    int num1 = int.Parse(Console.ReadLine());
+                    arr[1] += num1;
+                    sum += num1;
+                }
+                else if (num == 3)
+                {
+                    Console.WriteLine("how many");
+                    int num1 = int.Parse(Console.ReadLine());
+                    arr[2] += num1;
+                    sum += num1;
+                }
+                else if (num == 0) { break; }
+                else { Console.WriteLine("error"); }
+
+            }
+            min = arr[0];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] > max)
+                {
+                   max = arr[i];
+                   maxInd = i;
+                }
+                if (arr[i] < min)
+                {
+                    min = arr[i];
+                    minInd = i;
+                }
+            }
+            Console.WriteLine(food[0] + "orders" + arr[0]);
+            Console.WriteLine(food[1] + "orders" + arr[1]);
+            Console.WriteLine(food[2] + "orders" + arr[2]);
+            Console.WriteLine(sum + "orders");
+            Console.WriteLine("the max orders is" + food[maxInd]);
+            Console.WriteLine("the min orders is" + food[minInd]);
+
+        }
+    }
+}
